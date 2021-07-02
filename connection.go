@@ -21,7 +21,7 @@ func (conn *Conn) Ping(ctx context.Context) error {
 
 	done := make(chan struct{})
 	go conn.ociBreakDone(ctx, done)
-	result := C.OCIPing(conn.svc, conn.errHandle, C.OCI_DEFAULT)
+	result := C.OCIPing(conn.svc, conn.errHandle)
 	close(done)
 
 	if result == C.OCI_SUCCESS || result == C.OCI_SUCCESS_WITH_INFO {
